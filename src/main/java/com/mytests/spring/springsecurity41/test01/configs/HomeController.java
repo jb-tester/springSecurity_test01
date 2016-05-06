@@ -17,4 +17,11 @@ public class HomeController {
         model.addAttribute("home_attr1", "home_attr1");
         return "home";
     }
+
+    @RequestMapping("/logoutsuccess") // user-specific
+    // @RequestMapping("/login?logout") // default
+    public String logoutsuccess(ModelMap model) {
+        model.addAttribute("logoutsuccess_attr1", "logoutsuccess_attr1");
+        return "logoutsuccess";
+    }
 }
