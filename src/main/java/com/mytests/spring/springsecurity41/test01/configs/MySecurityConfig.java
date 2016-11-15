@@ -16,7 +16,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
+@ImportResource(locations = "classpath*:ss.xml")
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+
+}
+
+    /*
     @Autowired
     public void configureSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -44,5 +49,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
         ;
     }
+    }
+     */
 
-}
+

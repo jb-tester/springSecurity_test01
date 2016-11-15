@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <security:http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager">
+        <security:intercept-url pattern="/resources/**" access="permitAll"/>
+        <security:intercept-url pattern="/home" access="hasAnyAuthority('ROLE_PARENT','ROLE_CHILD')"/>
+        <security:intercept-url pattern="/important/**" access="hasAnyRole('PARENT','ADMIN')"/>
+        <security:intercept-url pattern="/private/**" access="hasAnyRole('VALID','ROLE_CHILD')"/>
+        <security:logout logout-url="/mylogout" logout-success-url="/logoutsuccess"/>
+    </security:http>
+    <security:authentication-manager id="authenticationManager">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="irina" authorities="ROLE_PARENT,ROLE_ADMIN" password="jolt"/>
+                <security:user name="vera" authorities="ROLE_CHILD,ROLE_VALID" password="1001"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>
