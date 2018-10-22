@@ -1,16 +1,44 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Irina.Petrovskaya
-  Date: 4/29/2016
-  Time: 5:43 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=iso-8859-1" language="java" %>
 <html>
 <head>
-    <title>page1</title>
+    <script> function validateForm() {
+        if (document.frm.foo.value == "") {
+            alert("address should not be blank..");
+            document.frm.foo.focus();
+            return false;
+        } else if (document.frm.bar.value == "") {
+            alert("phone number should not be blank");
+            document.frm.bar.focus();
+            return false;
+        }
+    } </script>
 </head>
 <body>
- secrete page1
+<form name="frm" method="get" action="/home" onSubmit="return validateForm()">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="22%"></td>
+            <td width="78%"></td>
+        </tr>
+        <tr>
+            <td>Enter your address</td>
+            <td><input type="text" name="address"/></td>
+        </tr>
+        <tr>
+            <td>Enter your phone number</td>
+            <td><input type="text" name="phone"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
+
+
