@@ -1,6 +1,7 @@
 package com.mytests.spring.springsecurity41.test01.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,7 +34,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/resources/**","/").permitAll()
-                .antMatchers("/home").hasAnyAuthority("ROLE_PARENT","ROLE_CHILD")
+                .mvcMatchers("/home").hasAnyAuthority("ROLE_PARENT","ROLE_CHILD")
                 .antMatchers("/important/**").hasAnyRole("PARENT","ADMIN")
                 .antMatchers("/private/**").access("hasRole('CHILD') and hasRole('VALID')")
                 .anyRequest().authenticated()
@@ -47,6 +48,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
         ;
     }
+
+    
     }
 
 
